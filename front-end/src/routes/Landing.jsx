@@ -1,6 +1,6 @@
 import React from 'react';
 import faerunImage from '../assets/faerun.jpg';
-import reactLogo from '../assets/react.svg';
+
 import Example1 from '../assets/Example1.jpg';
 import Example2 from '../assets/Example2.jpg';
 import Example3 from '../assets/Example3.jpg';

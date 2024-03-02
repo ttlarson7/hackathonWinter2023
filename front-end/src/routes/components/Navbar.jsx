@@ -65,7 +65,7 @@ export default function Navbar({ page }) {
                     <ul className="menu menu-horizontal px-1">
                         <SignedIn>
                             <li>
-                                <Link to="/home" className="btn btn-ghost rounded-lg">Create Character</Link>
+                                <Link to="/characterCreator" className="btn btn-ghost rounded-lg">Create Character</Link>
                             </li>
                         </SignedIn>
                         <SignedIn>

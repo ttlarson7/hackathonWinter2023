@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import { CharacterContext } from "../App";
+import { GlobalStateContext } from "../App";
 import CharacterCard from "./components/CharacterCard";
 export default function Home() {
-    const { characters, setCharacters } = React.useContext(CharacterContext);
+    const { characters, setCharacters } = React.useContext(GlobalStateContext);
     const [hasCharacters, setHasCharacters] = React.useState(characters.length > 0);
     const test = () => {
         console.log(characters)
