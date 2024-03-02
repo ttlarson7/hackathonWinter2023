@@ -19,7 +19,6 @@ app.get('/test', async (req, res) => {
         .then(data => console.log(data));
 });
 
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
