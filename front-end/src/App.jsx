@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './index.css';
 import 'daisyui/dist/full.css';
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
 import Landing from './routes/Landing'
