@@ -6,6 +6,7 @@ import HumanImage from "../../assets/human.png";
 import OrcImage from "../../assets/halforc.png";
 import HalfElfImage from "../../assets/halfelf.png";
 import HalflingImage from "../../assets/halfling.png";
+import DragonBornImage from "../../assets/dragonborn.png"
 // import TieflingImage from "../../assets/tiefling.png";
 // import DwarfImage from "../../assets/dwarf.png";
 // import GnomeImage from "../../assets/gnome.png";
@@ -18,6 +19,8 @@ export default function CharacterCode({ character, index}) {
         let imageUrl = Default;
     
         switch (character.race) {
+          case "DragonBorn":
+            imageUrl = DragonBornImage;
           case "Elf":
             imageUrl = ElfImage;
             break;

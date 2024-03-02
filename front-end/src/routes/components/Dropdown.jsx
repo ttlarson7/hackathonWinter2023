@@ -36,6 +36,9 @@ export default function Dropdown() {
     const classes = ["Fighter", "Sorcerer", "Rogue", "Cleric", "Wizard", "Bard", "Druid", "Monk", "Barbarian", "Paladin", "Ranger"];
     const races = ["Human", "Dwarf", "Gnome", "Elf", "Half-Elf", "Halfling", "Half-Orc", "Tiefling", "Dragonborn"];
 
+   
+
+
     const handleSelectionChange = (e, setState) => {
         setState(e.target.value);
     }
@@ -46,7 +49,7 @@ export default function Dropdown() {
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        
+
        
     }
     const { getToken } = useAuth();
@@ -78,11 +81,14 @@ export default function Dropdown() {
 
     return (
         <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10">
+
             <header className="text-center text-lg font-semibold text-gray-800 mb-4"> 
                 Character Create
             </header>
+
             <input type="text" placeholder="Character Name" className="input input-bordered input-primary w-full max-w-xs mb-5" />
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
                 <select 
                     className="p-2 border border-primary rounded-md shadow-sm focus:outline-none focus:border-blue-200"
                     id="races" 

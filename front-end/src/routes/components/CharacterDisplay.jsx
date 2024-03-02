@@ -37,15 +37,41 @@ export default function CharacterDisplay({ id }) {
             <p>language: {language}</p>
             <p>abiltiies: {abilities}</p>
 
-            <h1>Physical Stats: </h1>
-            <p>strength: {strength}</p>
-            <p>dexterity: {dexterity}</p>
-            <p>constitution: {consitution}</p>
+            
 
-            <h1>Mental Stats: </h1>
-            <p>intelligence: {intelligence} </p>
-            <p>wisdom: {wisdom}</p>
-            <p>charisma: {charisma}</p>
+            <div className="flex justify-center">
+            <div className="flex flex-row w-100 align-center stats shadow"> 
+                <div className="stat place-items-center">
+                <div className="stat-title">Dexterity</div>
+                <div className="stat-value text-secondary">{dexterity}</div>
+                </div>
+           
+                <div className="stat place-items-center">
+                <div className="stat-title">Strength</div>
+                <div className="stat-value text-secondary">{strength}</div>
+                </div>
+                        
+                <div className="stat place-items-center">
+                <div className="stat-title">Constitution</div>
+                <div className="stat-value text-secondary">{consitution}</div>
+                </div>
+
+                <div className="stat place-items-center">
+                <div className="stat-title">Intelligence</div>
+                <div className="stat-value text-primary">{intelligence}</div>
+                </div>
+
+                <div className="stat place-items-center">
+                <div className="stat-title">Wisdom</div>
+                <div className="stat-value text-primary">{wisdom}</div>
+                </div>
+
+                <div className="stat place-items-center">
+                <div className="stat-title">Charisma</div>
+                <div className="stat-value text-primary">{charisma}</div>
+                </div>
+            </div>
+            </div>
 
         </div>
     )
