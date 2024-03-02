@@ -57,7 +57,8 @@ export default function CharacterCode({ character, index}) {
 
     const testURL = () => {
         console.log(character.url)
-    }
+  }
+  
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl m-4">
         <figure className="max-h-60 flex justify-center items-center"><img src={`${url}`} className="object-contain max-h-full" alt="Shoes" /></figure>
@@ -65,8 +66,8 @@ export default function CharacterCode({ character, index}) {
             <h2 className="card-title">{ character.name }</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <button onClick={testURL}>Test</button>
-            <div className="card-actions justify-end">
-                <Link to={`/character/${index}`} className="btn btn-primary">Use</Link>
+          <div className="card-actions justify-end">
+              <Link to={`/character/${index}`} className="btn btn-primary">Use</Link>
             </div>
         </div>
         </div>
