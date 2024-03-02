@@ -1,17 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import './index.css';
+import { useState, createContext } from 'react'
+
+import 'tailwindcss/tailwind.css';
 import 'daisyui/dist/full.css';
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
-import Landing from './routes/Landing'
+import { SignOutButton, SignInButton, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react"
+
 import Home from './routes/Home'
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import Landing from './routes/Landing'
+
+
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<SignedOut><Landing /></SignedOut>} />
+      <Route path="/" element={<Landing />} />
       <Route path="/home" element={<SignedIn><Home /></SignedIn>} />
     </Routes>
   )
