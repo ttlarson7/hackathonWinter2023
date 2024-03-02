@@ -42,11 +42,11 @@ export default function Description() {
   };
 
   return (
-    <div className="flex justify-end">
+    <div className="card flex w-96 shadow-xl">
       <div className="bg-white max-w-xl rounded-lg overflow-hidden shadow-lg">
         <div className="flex justify-center">
           <img
-            className="w-1/2 h-1/2"
+            className="w-1/2"
             src={getImageSource()}
             alt={globalRace}
           />
