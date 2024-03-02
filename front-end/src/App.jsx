@@ -30,7 +30,7 @@ function App() {
     },
     {
       name: "Test",
-      class: 'Wizard',
+      class: 'WARRIOR',
       url: '../../assets/elf.png',
       race: "Elf",
       subrace: "High-elf",

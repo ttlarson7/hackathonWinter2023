@@ -17,6 +17,11 @@ export default function CharacterDisplay({ id }) {
     const abilities = selected.abilities;
     
     const strength = stats[0];
+    const dexterity = stats[1];
+    const consitution = stats[2];
+    const intelligence = stats[3];
+    const wisdom = stats[4];
+    const charisma = stats[5];
     
 
     return (
@@ -30,9 +35,17 @@ export default function CharacterDisplay({ id }) {
             <p>level: {level}</p>
             <p>background: {background}</p>
             <p>language: {language}</p>
-            <p>stats: {stats}</p>
             <p>abiltiies: {abilities}</p>
+
+            <h1>Physical Stats: </h1>
             <p>strength: {strength}</p>
+            <p>dexterity: {dexterity}</p>
+            <p>constitution: {consitution}</p>
+
+            <h1>Mental Stats: </h1>
+            <p>intelligence: {intelligence} </p>
+            <p>wisdom: {wisdom}</p>
+            <p>charisma: {charisma}</p>
 
         </div>
     )
