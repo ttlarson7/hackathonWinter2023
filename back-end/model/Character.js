@@ -1,6 +1,6 @@
-import {Mongoose} from "mongoose";
+import mongoose from "mongoose";
 
-const CharacterSchema = new Mongoose.Schema({
+const CharacterSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -33,8 +33,20 @@ const CharacterSchema = new Mongoose.Schema({
         type: String,
         required: true,
     }],
-});
+    description: {
+        type: String,
+        required: true,
+    },
+    stats: [{
+        type: Number,
+        required: true,
+    }],
+    abilities: [{
+        type: String,
+        required: true,
+    }],
+}, { versionKey: false });
 
-const Character = Mongoose.model("Character", CharacterSchema);
+const Character = mongoose.model("Character", CharacterSchema);
 
 export default Character;

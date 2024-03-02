@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 import express from "express"
+import bodyParser from "body-parser";
 import mongoose from "mongoose"
 import { ClerkExpressWithAuth, ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 
@@ -15,11 +16,12 @@ const db_access = process.env.MONGODB_ACCESS;
 
 app.use(express.json());
 app.use(express.static('dist'));
+app.use(bodyParser.json());
 
 app.use("/users", ClerkExpressWithAuth(), userRouter)
 app.use("/characters", ClerkExpressRequireAuth(), characterRouter)
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(401).send('Unauthenticated!');
 });
@@ -27,8 +29,8 @@ app.use((err, req, res) => {
 app.get('/test', async (req, res) => {
     res.send('Hello World');
     //req.body.class
-    var cl = "wizard"
-    var url = ""
+    const cl = "wizard";
+    let url = "";
     if (cl === "wizard"){
         url = "/classes/wizard/levels"
     }

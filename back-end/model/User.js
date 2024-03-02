@@ -1,12 +1,12 @@
-import {Mongoose} from "mongoose";
+import mongoose from "mongoose";
 
-const UserSchema = new Mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     id: {
         type: String,
         required: true
     }
-})
+}, { versionKey: false })
 
-const User = Mongoose.model("User", UserSchema)
+const User = mongoose.model("User", UserSchema)
 
 export default User;
