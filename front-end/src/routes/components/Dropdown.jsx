@@ -13,7 +13,7 @@ export default function Dropdown() {
     const backgrounds = ["Noble", "Outlander", "Acolyte", "Folk Hero"];
     const alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Evil"];
     const classes = ["Warrior", "Sorcerer", "Rogue", "Cleric", "Wizard"];
-    const races = ["Goblin", "Human", "Dwarf", "Gnome", "Elf", "Half Elf", "Halfling", "Half Orc", "Tiefling"];
+    const races = ["DragonBorn", "Goblin", "Human", "Dwarf", "Gnome", "Elf", "Half Elf", "Halfling", "Half Orc", "Tiefling"];
 
     const handleSelectionChange = (e, setState) => {
         setState(e.target.value);
@@ -32,15 +32,16 @@ export default function Dropdown() {
         console.log("Selected Alignment:", globalAlignment);
         console.log("Selected Background:", globalBackground);
         console.log("setGlobalDescription:", globalDescription);
+
     }
 
     return (
-        <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md">
+        <div id="category-dropdown" className="ml-10 p-4 bg-white shadow-md rounded-md">
             <header className="text-center text-lg font-semibold text-gray-800 mb-4"> 
                 Character Select
             </header>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <select 
                     className="p-2 border border-primary rounded-md shadow-sm focus:outline-none focus:border-blue-200"
                     id="races" 

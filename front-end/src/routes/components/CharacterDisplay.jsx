@@ -37,6 +37,8 @@ export default function CharacterDisplay({ id }) {
             <p>language: {language}</p>
             <p>abiltiies: {abilities}</p>
 
+            
+
             <div className="flex justify-center">
             <div className="flex flex-row w-100 align-center stats shadow"> 
                 <div className="stat place-items-center">
@@ -51,22 +53,22 @@ export default function CharacterDisplay({ id }) {
                         
                 <div className="stat place-items-center">
                 <div className="stat-title">Constitution</div>
-                <div className="stat-value">{consitution}</div>
+                <div className="stat-value text-secondary">{consitution}</div>
                 </div>
 
                 <div className="stat place-items-center">
                 <div className="stat-title">Intelligence</div>
-                <div className="stat-value text-secondary">{intelligence}</div>
+                <div className="stat-value text-primary">{intelligence}</div>
                 </div>
 
                 <div className="stat place-items-center">
                 <div className="stat-title">Wisdom</div>
-                <div className="stat-value">{wisdom}</div>
+                <div className="stat-value text-primary">{wisdom}</div>
                 </div>
 
                 <div className="stat place-items-center">
                 <div className="stat-title">Charisma</div>
-                <div className="stat-value">{charisma}</div>
+                <div className="stat-value text-primary">{charisma}</div>
                 </div>
             </div>
             </div>
