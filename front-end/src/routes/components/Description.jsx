@@ -12,7 +12,7 @@ import DefaultImage from "../../assets/default.jpg";
 import { GlobalStateContext } from "../../App";
 
 export default function Description() {
-  const { globalRace, globalClass } = React.useContext(GlobalStateContext);
+  const { globalRace, globalClass, globalDescription } = React.useContext(GlobalStateContext);
 
   const getImageSource = () => {
     switch (globalRace) {
@@ -59,10 +59,10 @@ export default function Description() {
             Race: {globalRace}
           </div>
           <div className="uppercase tracking-wide text-sm font-semibold mt-4">
-            Description:
+            Description: 
           </div>
           <p className="text-lg">
-            Hardcoded Description ADD later
+            {globalDescription}
           </p>
         </div>
       </div>

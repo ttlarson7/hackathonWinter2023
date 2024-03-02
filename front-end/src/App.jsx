@@ -46,6 +46,7 @@ function App() {
   const [globalClass, setGlobalClass] = useState('');
   const [globalAlignment, setGlobalAlignment] = useState('');
   const [globalBackground, setGlobalBackground] = useState('');
+  const [globalDescription, setGlobalDescription] = useState('');
 
   return (
     <GlobalStateContext.Provider value={{
@@ -58,7 +59,9 @@ function App() {
       globalAlignment,
       setGlobalAlignment,
       globalBackground,
-      setGlobalBackground
+      setGlobalBackground,
+      globalDescription, 
+      setGlobalDescription
     }}>
       <Routes>
         <Route path="/" element={<Landing />} />

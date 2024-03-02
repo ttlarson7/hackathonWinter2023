@@ -5,7 +5,8 @@ export default function Dropdown() {
     const {globalRace, setGlobalRace, 
         globalClass, setGlobalClass,
         globalAlignment, setGlobalAlignment,
-        globalBackground, setGlobalBackground
+        globalBackground, setGlobalBackground,
+        globalDescription, setGlobalDescription
     } = React.useContext(GlobalStateContext);
 
 
@@ -18,6 +19,10 @@ export default function Dropdown() {
         setState(e.target.value);
     }
 
+    const handleDescriptionChange = (e) => {
+        setGlobalDescription(e.target.value);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault(); 
         
@@ -26,6 +31,7 @@ export default function Dropdown() {
         console.log("Selected Class:", globalClass);
         console.log("Selected Alignment:", globalAlignment);
         console.log("Selected Background:", globalBackground);
+        console.log("setGlobalDescription:", globalDescription);
     }
 
     return (
@@ -83,6 +89,13 @@ export default function Dropdown() {
                         </option>
                     ))}
                 </select>
+                <input 
+                    type="text" 
+                    placeholder="Enter a Description" 
+                    className="input input-bordered w-full max-w-xs" 
+                    value={globalDescription}
+                    onChange={handleDescriptionChange}
+                />                
                 <button className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit">Submit</button>
             </form>
         </div>
