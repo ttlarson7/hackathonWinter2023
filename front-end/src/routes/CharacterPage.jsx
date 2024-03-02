@@ -1,10 +1,17 @@
-import React from 'react';
-
+import React from "react";
+import { useParams } from "react-router-dom";
+import CharacterDisplay from "./components/CharacterDisplay";
+import Navbar from "./components/Navbar";
 
 export default function CharacterPage() {
+    const { id } = useParams();
+
+    const characterId = parseInt(id);
+
     return (
-        <div>
-            <h1>Character Page</h1>
+        <div className="min-h-screen bg-secondary">
+            <Navbar page={3}/>
+            <CharacterDisplay id={characterId}/> 
         </div>
-    )
+    );
 }
