@@ -78,4 +78,27 @@ export default function Navbar({ page }) {
                 </div>
         )
     }
+    if (page === 3) {
+        return (
+            <div className={navbarClasses}>
+                <div className="flex-1">
+                    <Link to="/" className="btn btn-ghost text-xl">Realm Roster</Link>
+                </div>
+                <div className="flex-none">
+                    <ul className="menu menu-horizontal px-1">
+                        <SignedIn>
+                            <li>
+                                <Link to="/home" className="btn btn-ghost rounded-lg">Home</Link>
+                            </li>
+                        </SignedIn>
+                        <SignedIn>
+                            <li>
+                                <UserButton />
+                            </li>
+                        </SignedIn>
+                    </ul>
+                </div>
+                </div>
+        )
+    }
 }
