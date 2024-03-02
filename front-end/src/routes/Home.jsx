@@ -1,20 +1,36 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import { CharacterContext } from "../App";
+import CharacterCard from "./components/CharacterCard";
 export default function Home() {
     const { characters, setCharacters } = React.useContext(CharacterContext);
-    
+    const [hasCharacters, setHasCharacters] = React.useState(characters.length > 0);
+    const test = () => {
+        console.log(characters)
+    }
     return (
         <div className="min-h-screen bg-tertiary">
             <Navbar page={2} />
             <div className="flex flex-col items-center">
                 <div>
-                <h1 className="text-7xl mt-20 font-black animate-slow">Your Party</h1>
+                    <h1 className="text-7xl mt-20 mb-20 font-black animate-slow">Your Party</h1>
+                    
                 </div>
-            </div>
-            <div className="grid-cols-3">
+                {hasCharacters ? (
+                    <div className=" m-10 flex flex-wrap">
+                        {characters.map((character, index) => (
+                        <CharacterCard key={index} character={character} index={index} />
+                        ))}
+                    </div>
+                    ) : (
+                    <div>hello</div>
+                )}
+            </div> 
+            
+            
+            
 
-            </div>
+            
         </div>
     );
     }
