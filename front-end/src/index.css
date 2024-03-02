@@ -3,7 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body{
+  /* font-family: 'MedievalSharp', cursive; */
+}
 
 .animate-slow {
     animation-duration: 10s; /* Adjust the duration as needed */
