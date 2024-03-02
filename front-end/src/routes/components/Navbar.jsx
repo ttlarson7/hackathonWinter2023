@@ -2,9 +2,28 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
-
+import { GlobalStateContext } from '../../App';
 export default function Navbar({ page }) {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [gotCharacters, setGotCharacters] = useState(false);
+    const { characters, setCharacters } = React.useContext(GlobalStateContext);
+
+    const getCharacters = async () => {
+        if (gotCharacters) {
+            console.log(characters)
+            return;
+        } 
+        const response = await fetch('/api/characters', {
+            method: 'GET',
+            headers: {
+              'content-type': 'application/json'
+            }
+          })
+        const data = await response.json();
+        setCharacters(data);
+        setGotCharacters(true);
+    
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,7 +60,7 @@ export default function Navbar({ page }) {
                         </SignedOut>
                         <SignedIn>
                             <li>
-                                <Link to="/home" className="btn btn-ghost rounded-lg">Home</Link>
+                                <Link to="/home" className="btn btn-ghost rounded-lg" onClick={getCharacters}>Home</Link>
                             </li>
                         </SignedIn>
                         <SignedIn>
