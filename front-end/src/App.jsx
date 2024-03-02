@@ -17,6 +17,7 @@ function App() {
     {
       name: "Test",
       class: 'Wizard',
+      url: '../../assets/elf.png',
       race: "Elf",
       subrace: "High-elf",
       level: 1,
@@ -30,6 +31,7 @@ function App() {
     {
       name: "Test",
       class: 'Wizard',
+      url: '../../assets/elf.png',
       race: "Elf",
       subrace: "High-elf",
       level: 1,
