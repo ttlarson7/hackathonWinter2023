@@ -13,10 +13,11 @@ module.exports = {
       // Add custom theme settings here
       colors: {
         // Customize or add new colors
-        primary: '#FA4343',
-        secondary: '#A84993',
-        tertiary: '#1C1C1C',
-        quad: '#A84993',
+        primary: '#930C10',
+        secondary: '#930C10',
+        tertiary: '#F7CE65',
+        quad: '#290000',
+        fifth: '#030303',
         muted: '#E18485',
         w: '#FFFFFF',
         warning: '#F6E05E',
