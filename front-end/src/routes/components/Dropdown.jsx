@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGlobalState } from '../GlobalState';
+import { useGlobalState } from '../../GlobalState';
 
 export default function Dropdown() {
     const {globalRace, setGlobalRace, 
@@ -11,8 +11,8 @@ export default function Dropdown() {
 
     const backgrounds = ["Noble", "Outlander", "Acolyte", "Folk Hero"];
     const alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Evil"];
-    const classes = ["Warrior", "Sorcerer", "Rogue", "Cleric"];
-    const races = ["Human", "Dwarf", "Gnome", "Elf", "Half-Elf", "Halfling", "Half-Orc", "Tiefling"];
+    const classes = ["Warrior", "Sorcerer", "Rogue", "Cleric", "Wizard"];
+    const races = ["Goblin", "Human", "Dwarf", "Gnome", "Elf", "Half Elf", "Halfling", "Half Orc", "Tiefling"];
 
     const handleSelectionChange = (e, setState) => {
         setState(e.target.value);

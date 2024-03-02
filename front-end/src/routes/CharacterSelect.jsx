@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Dropdown from "../components/Dropdown";
-import Image from "../components/Image";
+import Dropdown from "./components/Dropdown";
+import Image from "./components/Image";
 
 export default function CharacterSelect() {
     
