@@ -7,7 +7,7 @@ import ElfImage from "../../assets/elf.png";
 import HalfElfImage from "../../assets/halfelf.png";
 import HalforcImage from "../../assets/halforc.png";
 import TieflingImage from "../../assets/tiefling.png";
-import HalflingImage from "../../assets/halfing.png";
+import HalflingImage from "../../assets/halfling.png";
 import DefaultImage from "../../assets/default.jpg";
 import { GlobalStateContext } from "../../App";
 
