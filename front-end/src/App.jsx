@@ -41,7 +41,9 @@ export const GlobalStateContext = createContext();
 
 function App() {
   // Define your state variables here
+
   const [characters, setCharacters] = useState([]);
+
 
   const [globalRace, setGlobalRace] = useState('');
   const [globalClass, setGlobalClass] = useState('');
