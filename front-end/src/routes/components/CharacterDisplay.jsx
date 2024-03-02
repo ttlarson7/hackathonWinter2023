@@ -16,6 +16,8 @@ export default function CharacterDisplay({ id }) {
     const stats = selected.stats;
     const abilities = selected.abilities;
     
+    const strength = stats[0];
+    
 
     return (
         <div className="text-black">
@@ -30,7 +32,7 @@ export default function CharacterDisplay({ id }) {
             <p>language: {language}</p>
             <p>stats: {stats}</p>
             <p>abiltiies: {abilities}</p>
-
+            <p>strength: {strength}</p>
 
         </div>
     )
