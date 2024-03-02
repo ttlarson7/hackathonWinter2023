@@ -2,12 +2,18 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import { GlobalStateContext } from "../App";
 import CharacterCard from "./components/CharacterCard";
+import { useEffect } from "react";
 export default function Home() {
     const { characters, setCharacters } = React.useContext(GlobalStateContext);
     const [hasCharacters, setHasCharacters] = React.useState(characters.length > 0);
     const test = () => {
         console.log(characters)
     }
+    useEffect(() => {
+        if (characters.length > 0) {
+          setHasCharacters(true);
+        }
+      }, [characters]);
     return (
         <div className="min-h-screen bg-tertiary">
             <Navbar page={2} />
@@ -23,7 +29,7 @@ export default function Home() {
                         ))}
                     </div>
                     ) : (
-                    <div>hello</div>
+                    <div>You should create some characters</div>
                 )}
             </div> 
             

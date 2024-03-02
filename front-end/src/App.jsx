@@ -10,39 +10,38 @@ import CharacterPage from './routes/CharacterPage';
 import CharacterCreator from './routes/CharacterCreator';
 // Create the context
 export const GlobalStateContext = createContext();
+// {
+//   name: "Test",
+//   class: 'Wizard',
+//   url: '../../assets/elf.png',
+//   race: "Elf",
+//   subrace: "High-elf",
+//   level: 1,
+//   background: "Acolyte",
+//   alignment: "Chaotic Good",
+//   languages: ["primordial", "goblin"],
+//   description: "He is very tall",
+//   stats: [10, 10, 10, 10, 10, 10],
+//   abilities: "He can do everything mid"
+// },
+// {
+//   name: "Test",
+//   class: 'Wizard',
+//   url: '../../assets/elf.png',
+//   race: "Elf",
+//   subrace: "High-elf",
+//   level: 1,
+//   background: "Acolyte",
+//   alignment: "Chaotic Good",
+//   languages: ["primordial", "goblin"],
+//   description: "He is very tall",
+//   stats: [10, 10, 10, 10, 10, 10],
+//   abilities: "He can do everything mid"
+// }
 
 function App() {
   // Define your state variables here
-  const [characters, setCharacters] = useState([
-    {
-      name: "Test",
-      class: 'Wizard',
-      url: '../../assets/elf.png',
-      race: "Elf",
-      subrace: "High-elf",
-      level: 1,
-      background: "Acolyte",
-      alignment: "Chaotic Good",
-      languages: ["primordial", "goblin"],
-      description: "He is very tall",
-      stats: [10, 10, 10, 10, 10, 10],
-      abilities: "He can do everything mid"
-    },
-    {
-      name: "Test",
-      class: 'Wizard',
-      url: '../../assets/elf.png',
-      race: "Elf",
-      subrace: "High-elf",
-      level: 1,
-      background: "Acolyte",
-      alignment: "Chaotic Good",
-      languages: ["primordial", "goblin"],
-      description: "He is very tall",
-      stats: [10, 10, 10, 10, 10, 10],
-      abilities: "He can do everything mid"
-    }
-  ]);
+  const [characters, setCharacters] = useState([]);
 
   const [globalRace, setGlobalRace] = useState('');
   const [globalClass, setGlobalClass] = useState('');
