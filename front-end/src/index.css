@@ -4,3 +4,6 @@
 @tailwind utilities;
 
 
+.animate-slow {
+    animation-duration: 10s; /* Adjust the duration as needed */
+  }
