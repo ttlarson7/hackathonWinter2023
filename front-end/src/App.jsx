@@ -44,12 +44,15 @@ function App() {
 
   const [characters, setCharacters] = useState([]);
 
-
+  const [globalName, setGlobalName] = useState('');
   const [globalRace, setGlobalRace] = useState('');
   const [globalClass, setGlobalClass] = useState('');
   const [globalAlignment, setGlobalAlignment] = useState('');
   const [globalBackground, setGlobalBackground] = useState('');
   const [globalDescription, setGlobalDescription] = useState('');
+  const [globalLanguages, setGlobalLanguages] = useState('');
+  const [globalAbilities, setGlobalAbilities] = useState([]);
+  const [globalStats, setGlobalStats] = useState([1]);
 
   return (
     <GlobalStateContext.Provider value={{
@@ -64,7 +67,15 @@ function App() {
       globalBackground,
       setGlobalBackground,
       globalDescription, 
-      setGlobalDescription
+      setGlobalDescription,
+      globalName,
+      setGlobalName,
+      globalLanguages,
+      setGlobalLanguages,
+      globalAbilities,
+      setGlobalAbilities,
+      globalStats,
+      setGlobalStats
     }}>
       <Routes>
         <Route path="/" element={<Landing />} />

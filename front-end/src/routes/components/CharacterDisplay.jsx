@@ -43,7 +43,7 @@ export default function CharacterDisplay({ id }) {
             <p>alignment: {alignment}</p>
             <p>background: {background}</p>
             <p>language: {languages}</p>
-            <p>abilities: {abilities}</p>
+            {/* <p>abilities: {abilities}</p> */}
 
             <div className="flex justify-center">
             <div className="flex flex-row w-100 align-center stats shadow"> 
