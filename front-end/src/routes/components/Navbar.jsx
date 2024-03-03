@@ -46,7 +46,7 @@ export default function Navbar({ page }) {
     }, []);
 
 
-    const navbarClasses = `navbar ${isScrolled ? 'bg-opacity-50' : 'bg-opacity-100'} bg-base-100 sticky top-0 z-50 `;
+    const navbarClasses = `navbar ${isScrolled ? 'bg-opacity-50' : 'bg-opacity-100'} bg-base-300 sticky top-0 z-50 `;
 
     if (page === 1) {
         return (
