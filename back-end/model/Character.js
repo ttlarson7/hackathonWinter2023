@@ -42,7 +42,7 @@ const CharacterSchema = new mongoose.Schema({
         required: true,
     }],
     abilities: [{
-        type: String,
+        type: Object,
         required: true,
     }],
 }, { versionKey: false });
