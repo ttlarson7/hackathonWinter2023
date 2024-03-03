@@ -6,6 +6,7 @@ export default function Dropdown() {
         globalClass, setGlobalClass,
         globalAlignment, setGlobalAlignment,
         globalBackground, setGlobalBackground,
+
         globalDescription, setGlobalDescription, characters, setCharacters} = React.useContext(GlobalStateContext);
     
    
@@ -19,6 +20,7 @@ export default function Dropdown() {
     const [description, setDescription] = useState("");
     const [stats, setStats] = useState([]);
     const [abilities, setAbilities] = useState([]);
+
 
     //user inputs: name, class, race, subrace, background, alignment, description, 
     //what we need to query: race, subrace, class, background, 
@@ -87,7 +89,6 @@ export default function Dropdown() {
     const { getToken } = useAuth();
     const createCharacter = async () => {
         const data = {
-            
             userId: "",
             name: name,
             class: cl,

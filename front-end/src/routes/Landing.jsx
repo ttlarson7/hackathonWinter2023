@@ -17,7 +17,7 @@ export default function Landing() {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div className="">
-                      <h1 className="opacity-100 mb-20 animate-text bg-gradient-to-r from-secondary via-tertiary to-secondary bg-clip-text text-transparent text-9xl font-black animate-slow">Realm Roster</h1>
+                      <h1 className="opacity-100 mb-20 animate-text bg-gradient-to-r from-quad via-primary to-quad bg-clip-text text-transparent text-9xl font-black animate-slow">Realm Roster</h1>
                       
             <p className="mb-5 mt-5 text-white text-3xl font-bold">The perfect place to let your imagination run wild</p>
           </div>

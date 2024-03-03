@@ -22,7 +22,7 @@ export default function CharacterPage() {
     // }
     
     return (
-        <div className="min-h-screen bg-secondary">
+        <div className="min-h-screen bg">
             <Navbar page={3}/>
             <CharacterDisplay id={characterId} /> 
             <button onClick={testURL}>Test URL</button>
