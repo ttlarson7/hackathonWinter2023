@@ -23,6 +23,7 @@ export default function Navbar({ page }) {
           })
         const data = await response.json();
         setCharacters(data);
+        console.log(data)
         setGotCharacters(true);
 
     }
