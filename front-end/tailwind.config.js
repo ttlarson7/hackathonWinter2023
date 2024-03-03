@@ -15,8 +15,8 @@ module.exports = {
         // Customize or add new colors
         primary: '#930C10',
         secondary: '#FFFEBD',
-        background: '#fafadc',
-        tertiary: '#F7CE65',
+        background: '#0D0A0B',
+        tertiary: '#454955',
         quad: '#290000',
         fifth: '#030303',
         muted: '#E18485',
