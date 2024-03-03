@@ -13,7 +13,7 @@ import { GlobalStateContext } from "../../App";
 import { useEffect } from "react";
 import { useState } from "react";
 export default function Description() {
-  const { globalRace, globalClass, globalDescription, globalBackground, globalAbilities, globalTraits, setGlobalTraits } = React.useContext(GlobalStateContext);
+  const { globalRace, globalClass, globalDescription, globalBackground, globalAbilities, globalTraits, setGlobalTraits, setGlobalStats } = React.useContext(GlobalStateContext);
   // speed: raceData['speed'],
   //                                   age: raceData['age'],
   //                                   size: raceData['size'],
@@ -52,23 +52,15 @@ export default function Description() {
         return DefaultImage;
     }
   };
-  // newAbilities[1] =
-  //                               {
-  //                                   hitDie: classData['hit_die'],
-  //                                   proficiencies: proficiencies,
-  //                           savingThrows: savingThrows,
-  //                           levelDescriptions: levelDescriptions,
-  //                           startingEquipment: startingEquipment
-  //                       }
-// speed: raceData['speed'],
-  //                                   age: raceData['age'],
-  //                                   size: raceData['size'],
-  //                                   sizeDescription: raceData['size_description'],
-  //                                   traits: traitNames,
-  //                                   traitsDescription: traitDescriptions,
-  const test = () => {
-    console.log(globalAbilities[0]?.['traits'])
-  }
+  const [stats, setStats] = useState([0, 0, 0, 0, 0, 0]);
+  const handleInputChange = (index, value) => {
+    const newStats = [...stats];
+    newStats[index] = value;
+    setStats(newStats);
+    setGlobalStats(Stats);
+  };
+ 
+ 
   return (
     <div className="card flex w-4/5 shadow-xl">
       <div className="bg-white w-full rounded-lg overflow-hidden shadow-lg">
@@ -79,6 +71,52 @@ export default function Description() {
             alt={globalRace}
           />
         </div>
+        <div className="flex max-w-sm mx-auto">
+      <input
+        type="number"
+        placeholder="Dex"
+        value={stats[0]}
+        onChange={(e) => handleInputChange(0, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 mr-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+      <input
+        type="number"
+        placeholder="Str"
+        value={stats[1]}
+        onChange={(e) => handleInputChange(1, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 mr-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+      <input
+        type="number"
+        placeholder="Con"
+        value={stats[2]}
+        onChange={(e) => handleInputChange(2, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 mr-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+      <input
+        type="number"
+        placeholder="Int"
+        value={stats[3]}
+        onChange={(e) => handleInputChange(3, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 mr-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+      <input
+        type="number"
+        placeholder="Wis"
+        value={stats[4]}
+        onChange={(e) => handleInputChange(4, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 mr-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+      <input
+        type="number"
+        placeholder="Cha"
+        value={stats[5]}
+        onChange={(e) => handleInputChange(5, parseInt(e.target.value))}
+        className="w-1/6 px-2 py-1 rounded border border-gray-300 focus:outline-none focus:border-indigo-500"
+      />
+    </div>
+
+    
         <div className="text-black p-6">
           <div className="uppercase tracking-wide text-sm font-semibold">
             Class: {globalClass}
@@ -131,7 +169,7 @@ export default function Description() {
           </div>
         </div>
       </div>
-      <button onClick={test}>button</button>
+     
     </div>
   );
 }

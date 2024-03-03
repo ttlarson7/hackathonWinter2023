@@ -17,10 +17,9 @@ export default function Home() {
     return (
         <div className="min-h-screen bg">
             <Navbar page={2} />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center justify-center">
                 <div>
                     <h1 className="text-7xl mt-20 mb-20 font-black animate-slow">Your Party</h1>
-                    
                 </div>
                 {hasCharacters ? (
                     <div className=" m-10 flex flex-wrap">
