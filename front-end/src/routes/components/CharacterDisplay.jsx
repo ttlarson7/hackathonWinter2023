@@ -202,7 +202,7 @@ export default function CharacterDisplay({ id }) {
                         <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">{name}</h1>
                     </div>
 
-                    <figure className="h-80 flex justify-center items-center p">
+                    <figure className="h-100 flex justify-center items-center p">
                         <img src={`${url}`} className="object-contain max-h-full" alt="Shoes"/>
                     </figure>
 

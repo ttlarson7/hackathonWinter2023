@@ -16,6 +16,9 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     let {userId} = req.auth
     let {id} = req.params
+    // if (isNaN(id)) {
+    //     return res.status(400).send({ERROR: "Invalid id"})
+    // }
     let character = await Character.findById(id).exec()
     if (!character || character.userId !== userId) {
         return res.status(404).send({ERROR: "Cannot find character"})

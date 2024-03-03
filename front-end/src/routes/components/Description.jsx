@@ -57,7 +57,7 @@ export default function Description() {
     const newStats = [...stats];
     newStats[index] = value;
     setStats(newStats);
-    setGlobalStats(Stats);
+    setGlobalStats(stats);
   };
  
  

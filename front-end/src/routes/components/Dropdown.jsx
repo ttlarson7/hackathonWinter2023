@@ -26,7 +26,7 @@ export default function Dropdown() {
     const alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Evil", "Neutral Evil", "Chaotic Evil", "Lawful Neutral", "True Neutral", "Chaotic Neutral"];
     const classes = ["Fighter", "Sorcerer", "Rogue", "Cleric", "Wizard", "Bard", "Druid", "Monk", "Barbarian", "Paladin", "Ranger"];
     const races = ["Human", "Dwarf", "Gnome", "Elf", "Half-Elf", "Halfling", "Half-Orc", "Tiefling", "Dragonborn"];
-    
+
     const getRaceAbilities = async (e, setState, setRace, setAbilities) => {
         setState(e.target.value);
         const baseURL = 'https://www.dnd5eapi.co/api/races';
@@ -162,7 +162,7 @@ export default function Dropdown() {
                 stats: globalStats,
                 abilities: globalAbilities
             }
-            setCharacters([...characters, data]);
+            
             const response = await fetch('/api/characters', {
                 method: 'POST',
                 headers: {
@@ -171,36 +171,8 @@ export default function Dropdown() {
                 },
                 body: JSON.stringify(data)
             })
-        //resetting global varaibles to empty:
-        setGlobalName('');
-  setGlobalRace('');
-  setGlobalClass('');
-  setGlobalAlignment('');
-  setGlobalBackground('');
-  setGlobalDescription('');
-  setGlobalLanguages('');
-  setGlobalTraits([""]);
-  setGlobalTraitsDescription([""]);
-  setGlobalAbilities([
-    {
-      speed: "",
-      age: "",
-      size: "",
-      sizeDescription: "",
-      traits: ["None"],
-      traitsDescription: ["None"],
-    },
-    {
-      hitDie: "0d0",
-      proficiencies: [""],
-      savingThrows: [""],
-      levelDescriptions: {},
-      startingEquipment: [""]
-    }
-  ]);
- 
         }
-    
+
         return (
             <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10 "style={{ maxHeight: 'max-content' }} >
                 <header className="text-center text-lg font-semibold text-gray-800 mb-4">
