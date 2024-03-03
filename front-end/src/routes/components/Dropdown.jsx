@@ -8,7 +8,8 @@ export default function Dropdown() {
         globalBackground, setGlobalBackground,
         globalDescription, setGlobalDescription
     } = React.useContext(GlobalStateContext);
-    const [characters, setCharacters] = React.useContext(GlobalStateContext);
+
+    const [characters, setCharacters] = useState("");
     const [name, setName] = useState("ASD");
     const [cl, setCl] = useState("asd");
     const [race, setRace] = useState("asf");
@@ -55,7 +56,6 @@ export default function Dropdown() {
     const { getToken } = useAuth();
     const createCharacter = async () => {
         const data = {
-            
             userId: "",
             name: name,
             class: cl,
