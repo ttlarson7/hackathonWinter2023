@@ -43,7 +43,7 @@ export default function Dropdown() {
                     const traitNames = [];
                     const traitDescriptions = [];
                     const traitsArr = raceData['traits'];
-                    const traitPromises = traitsArr.map(async (trait) => {
+                    traitsArr.map(async (trait) => {
                         const traitResponse = await fetch(`${baseURL2}${trait['url']}`)
                         const traitData = await traitResponse.json()
                             .then(traitData => {
@@ -90,11 +90,19 @@ export default function Dropdown() {
             const classResponse = await fetch(`${baseURL}/${chosenClass.toLowerCase()}`);
             const classData = await classResponse.json()
                 .then(async (classData) => {
-                    let levelDescriptions = {};
+                    const levelDescriptions = [];
                     const levels = await fetch(`${baseURL}/${chosenClass.toLowerCase()}/levels`);
                     const levelData = await levels.json()
                         .then((levelData) => {
-                            levelDescriptions = levelData;
+                            levelData.forEach((level) => {
+                                levelDescriptions.push({
+                                    level: level['level'],
+                                    abilityScoreImprovement: level['ability_score_bonuses'],
+                                    profBonus: level['prof_bonus'],
+                                    features: level['features'],
+                                });
+                            })
+                            console.log(levelDescriptions)
                         })
                     const proficiencies = []
                     const savingThrows = [classData['saving_throws'][0]['name'], classData['saving_throws'][1]['name']];
@@ -105,6 +113,7 @@ export default function Dropdown() {
                     classData['starting_equipment'].forEach((equipment) => {
                         startingEquipment.push(equipment['equipment']['name']);
                     })
+
                     setGlobalAbilities((prevAbilities) => {
                         const newAbilities = [...prevAbilities]
                         newAbilities[1] =
@@ -115,7 +124,7 @@ export default function Dropdown() {
                             levelDescriptions: levelDescriptions,
                             startingEquipment: startingEquipment
                         }
-                        console.log(newAbilities[1])
+                        
                         return newAbilities;
                     });
             })
@@ -128,20 +137,15 @@ export default function Dropdown() {
 
         const handleSelectionChange = (e, setState) => {
             setState(e.target.value);
-            console.log(e.target.value)
+            
         }
-
         const handleDescriptionChange = (e) => {
             setGlobalDescription(e.target.value);
         }
-
-
         const handleSubmit = (e) => {
             e.preventDefault();
         }
-    const test = () => {
-        console.log(globalAbilities[0]['traits'][0])
-    }
+   
     const { getToken } = useAuth();
     const createCharacter = async () => {
             console.log(globalName, globalClass, globalRace, globalBackground, globalAlignment, globalLanguages, globalDescription, globalStats, globalAbilities)
@@ -233,7 +237,7 @@ export default function Dropdown() {
                     />
                     <Link to="/home" className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit" onClick={createCharacter}>Submit</Link>
                 </form>
-                <button onClick={test}>button</button>
+               
             </div>
         );
     }
