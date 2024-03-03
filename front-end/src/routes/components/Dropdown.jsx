@@ -75,6 +75,25 @@ export default function Dropdown() {
         }
     };
 
+    const getClassAbilities = async (e, setState) => {
+        setState(e.target.value);
+        const baseURL = 'https://www.dnd5eapi.co/api/classes/';
+        
+        try {
+            // Fetching race data
+            const raceResponse = await fetch(`${baseURL}/${globalClass.toLowerCase()}`);
+            const raceData = await raceResponse.json()
+                .then(async (raceData) => {
+                    
+                    
+            })
+           
+        } catch (error) {
+            console.error('Error fetching race abilities:', error);
+            
+        }
+    };
+
         const handleSelectionChange = (e, setState) => {
             setState(e.target.value);
             console.log(e.target.value)
