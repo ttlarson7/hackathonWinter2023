@@ -17,7 +17,7 @@ module.exports = {
         secondary: '#FFFEBD',
         background: '#0D0A0B',
         tertiary: '#454955',
-        quad: '#290000',
+        quad: '#F3EFF5',
         fifth: '#030303',
         muted: '#E18485',
         w: '#FFFFFF',
