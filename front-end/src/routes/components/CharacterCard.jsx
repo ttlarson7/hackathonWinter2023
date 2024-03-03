@@ -13,14 +13,15 @@ import DragonBornImage from "../../assets/dragonborn.png"
 import Default from "../../assets/default.jpg";
 
 
-export default function CharacterCode({ character, index}) {
+export default function CharacterCode({ character}) {
     const [url, setUrl] = React.useState('');
     React.useEffect(() => {
-        let imageUrl = Default;
+        let imageUrl;
     
         switch (character.race) {
           case "DragonBorn":
             imageUrl = DragonBornImage;
+            break
           case "Elf":
             imageUrl = ElfImage;
             break;
@@ -67,7 +68,7 @@ export default function CharacterCode({ character, index}) {
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <button onClick={testURL}>Test</button>
           <div className="card-actions justify-end">
-              <Link to={`/character/${index}`} className="btn btn-primary">Use</Link>
+              <Link to={`/character/${character._id}`} className="btn btn-primary">Use</Link>
             </div>
         </div>
         </div>
