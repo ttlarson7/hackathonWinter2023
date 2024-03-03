@@ -6,9 +6,7 @@ import { useEffect } from "react";
 export default function Home() {
     const { characters, setCharacters } = React.useContext(GlobalStateContext);
     const [hasCharacters, setHasCharacters] = React.useState(characters.length > 0);
-    const test = () => {
-        console.log(characters)
-    }
+    
     useEffect(() => {
         if (characters.length > 0) {
           setHasCharacters(true);
@@ -21,6 +19,7 @@ export default function Home() {
                 <div>
                     <h1 className="text-7xl mt-20 mb-20 font-black animate-slow">Your Party</h1>
                 </div>
+                
                 {hasCharacters ? (
                     <div className=" m-10 flex flex-wrap">
                         {characters.map((character, index) => (
@@ -31,11 +30,6 @@ export default function Home() {
                     <div>You should create some characters</div>
                 )}
             </div> 
-            
-            
-            
-
-            
         </div>
     );
     }

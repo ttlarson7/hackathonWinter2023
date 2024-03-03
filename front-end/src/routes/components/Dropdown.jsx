@@ -147,6 +147,18 @@ export default function Dropdown() {
         }
    
     const { getToken } = useAuth();
+    const getCharacters = async () => {
+       
+        const response = await fetch('/api/characters', {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${await getToken()}`
+            },
+          })
+        const data = await response.json();
+        setCharacters(data);
+    }
     const createCharacter = async () => {
             console.log(globalName, globalClass, globalRace, globalBackground, globalAlignment, globalLanguages, globalDescription, globalStats, globalAbilities)
             const data = {
@@ -163,22 +175,26 @@ export default function Dropdown() {
                 abilities: globalAbilities
             }
             
-            const response = await fetch('/api/characters', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    Authorization: `Bearer ${await getToken()}`
-                },
-                body: JSON.stringify(data)
-            })
-        }
+        const response = await fetch('/api/characters', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${await getToken()}`
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                getCharacters();
+            }
+)}
 
+        
         return (
             <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10 "style={{ maxHeight: 'max-content' }} >
                 <header className="text-center text-lg font-semibold text-gray-800 mb-4">
                     Character Create
                 </header>
-                <input type="text" placeholder="Character Name" className="input input-bordered input-primary w-full max-w-xs mb-5" onChange={(e) => handleSelectionChange(e, setGlobalName)} />
+                <input type="text" placeholder="Character Name" className="input input-bordered  mb-5 rounded-md shadow-sm focus:outline-none focus:border-blue-200" onChange={(e) => handleSelectionChange(e, setGlobalName)} />
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <select
                         className="p-2 border border-primary rounded-md shadow-sm focus:outline-none focus:border-blue-200"
@@ -231,11 +247,11 @@ export default function Dropdown() {
                     <input
                         type="text"
                         placeholder="Enter a Description"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered  rounded-md shadow-sm focus:outline-none focus:border-blue-200"
                         value={globalDescription}
                         onChange={handleDescriptionChange}
                     />
-                    <Link to="/home" className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit" onClick={createCharacter}>Submit</Link>
+                    <Link to="/home" className="p-2 bg-primary text-white rounded-md hover:bg-fifth hover:text-black" type="submit" onClick={createCharacter}>Submit</Link>
                 </form>
                
             </div>
