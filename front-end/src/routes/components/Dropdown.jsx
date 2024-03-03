@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GlobalStateContext } from "../../App";
 import {SignInButton, SignedIn, SignedOut, UserButton, useAuth} from "@clerk/clerk-react"
 export default function Dropdown() {
@@ -6,50 +6,82 @@ export default function Dropdown() {
         globalClass, setGlobalClass,
         globalAlignment, setGlobalAlignment,
         globalBackground, setGlobalBackground,
-        globalDescription, setGlobalDescription
-    } = React.useContext(GlobalStateContext);
-    const [characters, setCharacters] = React.useContext(GlobalStateContext);
-    const [name, setName] = useState("ASD");
-    const [cl, setCl] = useState("asd");
-    const [race, setRace] = useState("asf");
-    const [subRace, setSubRace] = useState("asdf");
-    const [background, setBackground] = useState("asdf");
-    const [alignment, setAlignment] = useState("adf");
-    const [languages, setLanguages] = useState("asdf");
-    const [description, setDescription] = useState("asdf");
-    const [stats, setStats] = useState([1]);
-    const [abilities, setAbilities] = useState(['as']);
+        globalDescription, setGlobalDescription, characters, setCharacters} = React.useContext(GlobalStateContext);
+    
+   
+    const [name, setName] = useState("");
+    const [cl, setCl] = useState("");
+    const [race, setRace] = useState("");
+    const [subRace, setSubRace] = useState("");
+    const [background, setBackground] = useState("");
+    const [alignment, setAlignment] = useState("");
+    const [languages, setLanguages] = useState("");
+    const [description, setDescription] = useState("");
+    const [stats, setStats] = useState([]);
+    const [abilities, setAbilities] = useState([]);
 
     //user inputs: name, class, race, subrace, background, alignment, description, 
     //what we need to query: race, subrace, class, background, 
-    
-    const getRaceAbilities = async () => {
-        const baseURL = 'https://www.dnd5eapi.co/api/races/'
-        const response = await fetch(baseURL + globalRace.toLowerCase());
-        const data = await response.json();
-
-    }
-    
     
     const backgrounds = ["Noble", "Outlander", "Acolyte", "Folk Hero"];
     const alignments = ["Lawful Good", "Neutral Good", "Chaotic Good", "Lawful Evil", "Neutral Evil", "Chaotic Evil", "Lawful Neutral", "True Neutral", "Chaotic Neutral"];
     const classes = ["Fighter", "Sorcerer", "Rogue", "Cleric", "Wizard", "Bard", "Druid", "Monk", "Barbarian", "Paladin", "Ranger"];
     const races = ["Human", "Dwarf", "Gnome", "Elf", "Half-Elf", "Halfling", "Half-Orc", "Tiefling", "Dragonborn"];
 
-   
-
-
-    const handleSelectionChange = (e, setState) => {
+    const getRaceAbilities = async (e, setState) => {
         setState(e.target.value);
-    }
+        const baseURL = 'https://www.dnd5eapi.co/api/races';
+        setRace(globalRace);
+        const baseURL2 = 'https://www.dnd5eapi.co';
+        const response = await fetch(baseURL + '/' + globalRace.toLowerCase());
+        const data = await response.json();
+    
+        const traitsArr = data['traits'];
+        
+        
+        const promises = traitsArr.map(async (trait) => {
+            const traitResponse = await fetch(baseURL2 + trait['url']);
+            const traitData = await traitResponse.json();
+            return {
+                name: traitData['name'],
+                desc: traitData['desc']
+            };
+        });
+    
+        
+        const resolvedTraits = await Promise.all(promises);
+    
+      
+        const traitNames = resolvedTraits.map((trait) => trait.name);
+        const traitsDescription = resolvedTraits.map((trait) => trait.desc);
+        
+        
+        setAbilities((prevAbilities) => {
+            const abilitiesArray = [...prevAbilities];
+            abilitiesArray[0] = {
+                speed: data['speed'],
+                age: data['age'],
+                size: data['size'],
+                sizeDescription: data['size_description'],
+                langDescription: data['language_desc'],
+                traits: traitNames,
+                traitsDescription: traitsDescription,
+            };
+            
+            
+            return abilitiesArray;
+        });
+        
+    };
+
 
     const handleDescriptionChange = (e) => {
         setGlobalDescription(e.target.value);
     }
 
+
     const handleSubmit = (e) => {
         e.preventDefault(); 
-
        
     }
     const { getToken } = useAuth();
@@ -68,7 +100,7 @@ export default function Dropdown() {
             stats: stats,
             abilities: abilities
         }
-        setCharacters([...characters, data]);
+        //setCharacters([...characters, data]);
         const response = await fetch('/api/characters', {
             method: 'POST',
             headers: {
@@ -81,7 +113,9 @@ export default function Dropdown() {
 
     return (
         <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10">
-
+            <div>
+                {race}
+            </div>
             <header className="text-center text-lg font-semibold text-gray-800 mb-4"> 
                 Character Create
             </header>
@@ -92,7 +126,7 @@ export default function Dropdown() {
                 <select 
                     className="p-2 border border-primary rounded-md shadow-sm focus:outline-none focus:border-blue-200"
                     id="races" 
-                    onChange={(e) => handleSelectionChange(e, setGlobalRace)} 
+                    onChange={(e) => getRaceAbilities(e, setGlobalRace)} 
                     value={globalRace}>
                     <option value="">Select a Race</option>
                     {races.map((race) => ( 
@@ -146,6 +180,7 @@ export default function Dropdown() {
                 />                
                 <button className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit" onClick={createCharacter}>Submit</button>
             </form>
+            
         </div>
     );
 }
