@@ -15,7 +15,7 @@ export default function Home() {
         }
       }, [characters]);
     return (
-        <div className="min-h-screen bg-tertiary">
+        <div className="min-h-screen bg">
             <Navbar page={2} />
             <div className="flex flex-col items-center">
                 <div>

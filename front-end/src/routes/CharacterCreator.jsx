@@ -8,7 +8,7 @@ export default function CharacterSelect() {
     return (
         <div>
             <Navbar page={3}/>
-            <div className="bg-secondary min-h-screen flex flex-row items-center " id="main">
+            <div className="bg min-h-screen flex flex-row items-center " id="main">
                 <div className="flex-1 flex" id='dropdown'>
                     <Dropdown/>
                 </div>
