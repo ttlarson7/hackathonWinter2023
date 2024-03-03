@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GlobalStateContext } from "../../App";
-import {SignInButton, SignedIn, SignedOut, UserButton, useAuth} from "@clerk/clerk-react"
+import { SignInButton, SignedIn, SignedOut, UserButton, useAuth } from "@clerk/clerk-react"
+import { Link } from "react-router-dom";
 export default function Dropdown() {
     const { globalRace, setGlobalRace,
         globalClass, setGlobalClass,
@@ -10,6 +11,8 @@ export default function Dropdown() {
         globalLanguages, setGlobalLanguages,
         globalAbilities, setGlobalAbilities,
         globalStats, setGlobalStats,
+        globalTraits, setGlobalTraits,
+        globalTraitsDescription, setGlobalTraitsDescription,
         globalDescription, setGlobalDescription, characters, setCharacters } = React.useContext(GlobalStateContext);
     
    
@@ -52,7 +55,8 @@ export default function Dropdown() {
                     
             
                     setGlobalLanguages(raceData['language_desc']);
-                    
+                    setGlobalTraits(traitNames);
+                    setGlobalTraitsDescription(traitDescriptions);
                     setGlobalAbilities((prevAbilities) => {
                         const newAbilities = [...prevAbilities]
                         newAbilities[0] =
@@ -76,16 +80,44 @@ export default function Dropdown() {
     };
 
     const getClassAbilities = async (e, setState) => {
-        setState(e.target.value);
+        setState(e.target.value)
+        const chosenClass = e.target.value;
+        console.log(e.target.value)
         const baseURL = 'https://www.dnd5eapi.co/api/classes/';
         
         try {
             // Fetching race data
-            const raceResponse = await fetch(`${baseURL}/${globalClass.toLowerCase()}`);
-            const raceData = await raceResponse.json()
-                .then(async (raceData) => {
-                    
-                    
+            const classResponse = await fetch(`${baseURL}/${chosenClass.toLowerCase()}`);
+            const classData = await classResponse.json()
+                .then(async (classData) => {
+                    let levelDescriptions = {};
+                    const levels = await fetch(`${baseURL}/${chosenClass.toLowerCase()}/levels`);
+                    const levelData = await levels.json()
+                        .then((levelData) => {
+                            levelDescriptions = levelData;
+                        })
+                    const proficiencies = []
+                    const savingThrows = [classData['saving_throws'][0]['name'], classData['saving_throws'][1]['name']];
+                    classData['proficiencies'].forEach((proficiency) => {
+                        proficiencies.push(proficiency['name']);
+                    })
+                    const startingEquipment = []
+                    classData['starting_equipment'].forEach((equipment) => {
+                        startingEquipment.push(equipment['equipment']['name']);
+                    })
+                    setGlobalAbilities((prevAbilities) => {
+                        const newAbilities = [...prevAbilities]
+                        newAbilities[1] =
+                                {
+                                    hitDie: classData['hit_die'],
+                                    proficiencies: proficiencies,
+                            savingThrows: savingThrows,
+                            levelDescriptions: levelDescriptions,
+                            startingEquipment: startingEquipment
+                        }
+                        console.log(newAbilities[1])
+                        return newAbilities;
+                    });
             })
            
         } catch (error) {
@@ -107,7 +139,9 @@ export default function Dropdown() {
         const handleSubmit = (e) => {
             e.preventDefault();
         }
-        
+    const test = () => {
+        console.log(globalAbilities[0]['traits'][0])
+    }
     const { getToken } = useAuth();
     const createCharacter = async () => {
             console.log(globalName, globalClass, globalRace, globalBackground, globalAlignment, globalLanguages, globalDescription, globalStats, globalAbilities)
@@ -136,7 +170,7 @@ export default function Dropdown() {
         }
 
         return (
-            <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10">
+            <div id="category-dropdown" className="p-4 bg-white shadow-md rounded-md ml-10 "style={{ maxHeight: 'max-content' }} >
                 <header className="text-center text-lg font-semibold text-gray-800 mb-4">
                     Character Create
                 </header>
@@ -157,7 +191,7 @@ export default function Dropdown() {
                     <select
                         className="p-2 border border-primary rounded-md shadow-sm focus:outline-none focus:border-blue-200"
                         id="classes"
-                        onChange={(e) => handleSelectionChange(e, setGlobalClass)}
+                        onChange={(e) => getClassAbilities(e, setGlobalClass)}
                         value={globalClass}>
                         <option value="">Select a Class</option>
                         {classes.map((classType) => (
@@ -197,9 +231,9 @@ export default function Dropdown() {
                         value={globalDescription}
                         onChange={handleDescriptionChange}
                     />
-                    <button className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit" onClick={createCharacter}>Submit</button>
+                    <Link to="/home" className="p-2 bg-quad text-white rounded-md hover:bg-tertiary hover:text-black" type="submit" onClick={createCharacter}>Submit</Link>
                 </form>
-            
+                <button onClick={test}>button</button>
             </div>
         );
     }

@@ -51,7 +51,24 @@ function App() {
   const [globalBackground, setGlobalBackground] = useState('');
   const [globalDescription, setGlobalDescription] = useState('');
   const [globalLanguages, setGlobalLanguages] = useState('');
-  const [globalAbilities, setGlobalAbilities] = useState([]);
+  const [globalTraits, setGlobalTraits] = useState([""]);
+  const [globalTraitsDescription, setGlobalTraitsDescription] = useState([""]);
+  const [globalAbilities, setGlobalAbilities] = useState([{
+          speed: "",
+          age: "",
+          size: "",
+          sizeDescription: "",
+          traits: ["None"],
+            traitsDescription: ["None"],
+  },
+  {
+    hitDie: "0d0",
+    proficiencies: [""],
+savingThrows: [""],
+    levelDescriptions: {},
+startingEquipment: [""]
+}
+  ]);
   const [globalStats, setGlobalStats] = useState([1]);
 
   return (
@@ -75,7 +92,11 @@ function App() {
       globalAbilities,
       setGlobalAbilities,
       globalStats,
-      setGlobalStats
+      setGlobalStats,
+      globalTraits,
+      setGlobalTraits,
+      globalTraitsDescription,
+      setGlobalTraitsDescription
     }}>
       <Routes>
         <Route path="/" element={<Landing />} />
