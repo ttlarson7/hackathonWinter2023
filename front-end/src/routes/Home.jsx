@@ -25,7 +25,7 @@ export default function Home() {
                 {hasCharacters ? (
                     <div className=" m-10 flex flex-wrap">
                         {characters.map((character, index) => (
-                            <CharacterCard key={index} character={character} index={index} c={character.class} />
+                            <CharacterCard key={index} character={character} c={character.class} />
                         ))}
                     </div>
                     ) : (

@@ -1,43 +1,49 @@
-import React from "react";
-import { GlobalStateContext } from "../../App";
+import React, {useEffect, useState} from "react";
+import {useAuth} from "@clerk/clerk-react";
 
 export default function CharacterDisplay({ id }) {
-    const{characters} = React.useContext(GlobalStateContext)
+    const { getToken } = useAuth();
 
-    const selected = characters[id];
-    const name = selected.name;
-    const characterClass = selected.class;
-    const race = selected.subrace;
-    const subRace = selected.level;
-    const level = selected.background;
-    const background = selected.alignment;
-    const language = selected.languages;
-    const description = selected.description;
-    const stats = selected.stats;
-    const abilities = selected.abilities;
-    
-    const strength = stats[0];
-    const dexterity = stats[1];
-    const consitution = stats[2];
-    const intelligence = stats[3];
-    const wisdom = stats[4];
-    const charisma = stats[5];
-    
+    const [characterData, setCharacterData] = useState(null);
+    useEffect(() => {
+        const getCharacter = async () => {
+            try {
+                const response = await fetch('/api/characters/' + id, {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                        Authorization: `Bearer ${await getToken()}`
+                    }
+                });
+                const data = await response.json();
+                setCharacterData(data);
+            } catch (error) {
+                console.error('Error fetching character:', error);
+            }
+        };
+
+        getCharacter();
+    }, [id, getToken])
+
+    if (!characterData) {
+        return <div>Loading...</div>
+    }
+
+    const { name, characterClass, race, subrace, background, alignment, languages, description, stats, abilities } = characterData;
+    const [ strength, dexterity, constitution, intelligence, wisdom, charisma ] = stats;
 
     return (
         <div className="text-black">
-            <p>Character ID: {id}</p>
+            {/*<p>Character ID: {id}</p>*/}
             <h1>Name: {name}</h1>
             <p>Class: {characterClass}</p>
             <p>Race: {race}</p>
-            <p>Sub Race: {subRace}</p>
+            <p>Sub Race: {subrace}</p>
             <p>description: {description}</p>
-            <p>level: {level}</p>
+            <p>alignment: {alignment}</p>
             <p>background: {background}</p>
-            <p>language: {language}</p>
-            <p>abiltiies: {abilities}</p>
-
-            
+            <p>language: {languages}</p>
+            <p>abilities: {abilities}</p>
 
             <div className="flex justify-center">
             <div className="flex flex-row w-100 align-center stats shadow"> 
@@ -53,7 +59,7 @@ export default function CharacterDisplay({ id }) {
                         
                 <div className="stat place-items-center">
                 <div className="stat-title">Constitution</div>
-                <div className="stat-value text-secondary">{consitution}</div>
+                <div className="stat-value text-secondary">{constitution}</div>
                 </div>
 
                 <div className="stat place-items-center">
