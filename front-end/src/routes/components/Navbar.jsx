@@ -5,15 +5,12 @@ import {SignInButton, SignedIn, SignedOut, UserButton, useAuth} from "@clerk/cle
 import { GlobalStateContext } from '../../App';
 export default function Navbar({ page }) {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [gotCharacters, setGotCharacters] = useState(false);
+    
     const { characters, setCharacters } = React.useContext(GlobalStateContext);
     const { getToken } = useAuth();
 
     const getCharacters = async () => {
-        if (gotCharacters) {
-            console.log(characters)
-            return;
-        }
+       
         const response = await fetch('/api/characters', {
             method: 'GET',
             headers: {
@@ -23,8 +20,8 @@ export default function Navbar({ page }) {
           })
         const data = await response.json();
         setCharacters(data);
-        console.log(data)
-        setGotCharacters(true);
+        
+        
 
     }
 

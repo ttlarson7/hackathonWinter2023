@@ -11,6 +11,7 @@ import HalflingImage from "../../assets/halfling.png";
 import DefaultImage from "../../assets/default.jpg";
 import { GlobalStateContext } from "../../App";
 import { useEffect } from "react";
+import { useState } from "react";
 export default function Description() {
   const { globalRace, globalClass, globalDescription, globalBackground, globalAbilities, globalTraits, setGlobalTraits } = React.useContext(GlobalStateContext);
   // speed: raceData['speed'],
@@ -19,9 +20,12 @@ export default function Description() {
   //                                   sizeDescription: raceData['size_description'],
   //                                   traits: traitNames,
   //                                   traitsDescription: traitDescriptions,
+  const [traits, setTraits] = useState(globalAbilities[0]?.['traits']);
+  const [traitsDescription, setTraitsDescription] = useState(globalAbilities[0]?.['traitsDescription']);
   useEffect(() => {
-    setGlobalTraits(globalAbilities[0]?.['traits'])
-  }, [globalAbilities[0]?.['traits']])
+    setTraits(globalAbilities[0]?.['traits'])
+    setTraitsDescription(globalAbilities[0]?.['traitsDescription'])
+  }, [globalAbilities])
   const getImageSource = () => {
     switch (globalRace) {
       case "":
@@ -91,9 +95,9 @@ export default function Description() {
           <p className="text-lg">
             {globalDescription}
           </p>
-          <div className="flex justify-around">
+          <div className="flex flex-col">
             <div className="flex flex-col max-w-1/2"> {/* Added max-w-1/2 class */}
-              <div className="uppercase tracking-wide text-sm font-semibold mt-4 self-center">
+              <div className="uppercase tracking-wide text-sm font-semibold mt-4">
                 Race Abilities
               </div>
               <p className="text-lg max-w-80">
@@ -105,9 +109,9 @@ export default function Description() {
               <p className="text-lg max-w-80">
                 <b>Size:</b> {globalAbilities[0]?.['sizeDescription']}
               </p>
-              <p>{globalAbilities[0]?.['traits']}</p>
+              
             </div>
-            <div className="flex flex-col items-center max-w-1/2"> {/* Added max-w-1/2 class */}
+            <div className="flex flex-col max-w-1/2"> {/* Added max-w-1/2 class */}
               <div className="uppercase tracking-wide text-sm font-semibold mt-4">
                 Class Abilities
               </div>
@@ -120,6 +124,9 @@ export default function Description() {
               {globalAbilities[1]?.['startingEquipment'].map((equipment, index) => {
                return <p key={index} className="text-lg"><b>Starting Equipment: </b>{equipment}</p>
               })}
+              {/* {globalAbilities[1]?.['levelDescriptions'].map((description, index) => {
+                return <p key={index} className="text-lg"><b>Level {index + 1}: </b> Ability Score Improvement: {description['ability_score_bonuses']}, Prof Bonus: {description['prof_bonus']}</p>
+              })} */}
             </div>
           </div>
         </div>
